@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164573520905",
+    "project_id": "erp-otp-a4b77",
+    "storage_bucket": "erp-otp-a4b77.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164573520905:android:b97825839ae94fb23a84d8",
+        "android_client_info": {
+          "package_name": "cloud.sahin.erp.dtexErp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD27fnLczqZvAw3ZQnXkI6V5w8UD8mSk1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
