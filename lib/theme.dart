@@ -28,7 +28,7 @@ LinearGradient brandGradient(Color brand) => LinearGradient(
 /// Semantic colour for an order/return status string.
 Color statusColor(String s) {
   final v = s.toLowerCase();
-  if (v.contains('deliver') || v.contains('complete') || v.contains('paid') || v.contains('approv')) return kSuccess;
+  if (v.contains('deliver') || v.contains('complete') || v.contains('paid') || v.contains('approv') || v.contains('confirm')) return kSuccess;
   if (v.contains('cancel') || v.contains('return') || v.contains('reject')) return kDanger;
   if (v.contains('ship')) return const Color(0xFF2563EB);
   if (v.contains('pack') || v.contains('ready') || v.contains('process')) return const Color(0xFF7C3AED);

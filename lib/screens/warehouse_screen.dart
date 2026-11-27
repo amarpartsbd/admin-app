@@ -105,7 +105,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> with WidgetsBindingOb
             else if (_error != null)
               _message(Icons.cloud_off_rounded, _error!, action: TextButton(onPressed: _load, child: const Text('Try again')))
             else if (_orders.isEmpty)
-              _message(Icons.inventory_2_outlined, 'Nothing to pack right now.\nOrders moved to "In Packing" show up here.')
+              _message(Icons.inventory_2_outlined, 'Nothing to pack right now.\nOrders marked "Confirmed" show up here.')
             else
               ..._orders.map((o) => Padding(padding: const EdgeInsets.only(bottom: 10), child: _tile(o, cur))),
           ],
@@ -147,6 +147,14 @@ class _WarehouseScreenState extends State<WarehouseScreen> with WidgetsBindingOb
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
               Text(o['order_number'].toString(), style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: kInk)),
+              if (o['status'] == 'in_packing') ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  decoration: BoxDecoration(color: const Color(0xFF7C3AED).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
+                  child: const Text('In Packing', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF7C3AED))),
+                ),
+              ],
               const Spacer(),
               if (waited != null)
                 Container(

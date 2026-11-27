@@ -37,6 +37,9 @@ class _PackOrderScreenState extends State<PackOrderScreen> {
     super.dispose();
   }
 
+  /// Server says whether this order can still be packed (Confirmed or In Packing).
+  bool get _canPack => _order?['can_pack'] == true || _order?['status'] == 'in_packing';
+
   List<Map<String, dynamic>> get _items => ((_order?['items'] as List?) ?? const []).cast<Map<String, dynamic>>();
 
   Future<void> _load() async {
@@ -153,7 +156,7 @@ class _PackOrderScreenState extends State<PackOrderScreen> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(12, 4, 12, 24),
                 children: [
-                  if (o['status'] != 'in_packing')
+                  if (!_canPack)
                     _banner(Icons.info_outline, 'This order is ${o['status_label']} — it is no longer waiting to be packed.', kWarning),
                   Container(
                     padding: const EdgeInsets.all(14),
@@ -177,7 +180,7 @@ class _PackOrderScreenState extends State<PackOrderScreen> {
                 ],
               ),
             ),
-      bottomNavigationBar: o == null || o['status'] != 'in_packing' ? null : _bottom(cur),
+      bottomNavigationBar: o == null || !_canPack ? null : _bottom(cur),
     );
   }
 
