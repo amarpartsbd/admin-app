@@ -12,6 +12,7 @@ import 'finance_screen.dart';
 import 'employees_screen.dart';
 import 'reports_screen.dart';
 import 'profile_screen.dart';
+import 'warehouse_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -20,6 +21,7 @@ class MoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<AppState>();
     final tiles = <_Tile>[
+      if (state.can('warehouse.pack')) _Tile('Packing', Icons.scale_rounded, const Color(0xFF7C3AED), const WarehouseScreen()),
       if (state.can('orders.create')) _Tile('POS', Icons.point_of_sale, const Color(0xFF059669), const PosScreen()),
       if (state.can('customers.view')) _Tile('Customers', Icons.people_alt, const Color(0xFF2563EB), const CustomersScreen()),
       if (state.can('products.view')) _Tile('Products', Icons.inventory_2, const Color(0xFF0891B2), const ProductsScreen()),

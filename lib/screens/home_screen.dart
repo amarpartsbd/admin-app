@@ -5,6 +5,7 @@ import 'dashboard_screen.dart';
 import 'orders_screen.dart';
 import 'b2b_screen.dart';
 import 'more_screen.dart';
+import 'warehouse_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final canB2b = context.read<AppState>().can('b2b.view');
+    final state = context.read<AppState>();
+    // Warehouse staff (can pack, can't see orders) get just the packing queue.
+    if (state.can('warehouse.pack') && !state.can('orders.view')) {
+      return const WarehouseScreen(standalone: true);
+    }
+    final canB2b = state.can('b2b.view');
     final pages = <Widget>[
       const DashboardScreen(),
       const OrdersScreen(),
