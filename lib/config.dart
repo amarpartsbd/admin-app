@@ -4,8 +4,8 @@ class AppConfig {
   ///
   /// Dev tips:
   ///   Android emulator → http://10.0.2.2:8131/api/v1/app
-  ///   iOS simulator    → https://erp.sahin.cloud/api/v1/app
-  static const String apiBaseUrl = 'https://erp.sahin.cloud/api/v1/app';
+  ///   iOS simulator    → https://banik360.com/api/v1/app
+  static const String apiBaseUrl = 'https://banik360.com/api/v1/app';
 
   static const String appName = 'Turn360 ERP';
 }

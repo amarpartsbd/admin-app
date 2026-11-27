@@ -80,6 +80,15 @@ class AppState extends ChangeNotifier {
     await _saveSession(res);
   }
 
+  /// Email (or phone) + password sign-in — for staff without SMS, e.g. warehouse tablets.
+  Future<void> passwordLogin(String identifier, String password) async {
+    final id = identifier.trim();
+    final res = id.contains('@')
+        ? await api.post('/login', body: {'email': id, 'password': password, 'device_name': 'mobile'})
+        : await api.post('/login-phone', body: {'phone': id, 'password': password, 'device_name': 'mobile'});
+    await _saveSession(res);
+  }
+
   /// Step 1 — request an OTP for a phone number.
   Future<bool> requestOtp(String phone) async {
     final res = await api.post('/otp/request', body: {'phone': phone});
